@@ -7,3 +7,51 @@
 body.page-id-811 #grid .oor_fixed {
     position: fixed !important;
 }
+
+
+/** == The card effect in thumbnail grid == */
+/* Inspired by https://codepen.io/edeesims/pen/iGDzk?editors=1100 */
+
+/* Set a 3D scene */
+.thumb-collection .thumb-rel {
+    -webkit-perspective: 500px;
+            perspective: 500px;
+}
+.thumb-collection .thumb-rel .ph {
+    -webkit-transition: -webkit-transform 1s;
+    transition: -webkit-transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+    transition: transform 1s, -webkit-transform 1s;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+}
+
+/* Rotate on hover. */
+.thumb-collection .thumb-rel:hover .ph {
+    -webkit-transform: rotateY( 180deg );
+            transform: rotateY( 180deg );
+    -webkit-transition: -webkit-transform 1s;
+    transition: -webkit-transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+    transition: transform 1s, -webkit-transform 1s;
+}
+
+.thumb-collection .thumb-rel .ph > img {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* Disable the Lay theme's hiding mechanism. */
+    visibility: visible !important;
+}
+
+.thumb-collection .thumb-rel .ph > img:nth-child(2) {
+    -webkit-transform: rotateY( 180deg );
+            transform: rotateY( 180deg )
+}
+
+/* Reset the overflow as the `hidden` value set by Lay theme destroys the 3D effect
+https://css-tricks.com/things-watch-working-css-3d/*/
+.thumb-collection .thumb-rel .ph {
+    overflow: initial !important;
+}
