@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       OutOfReach tweaks
  * Plugin URI:        https://github.com/goodhoko/oor_tweaks
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Responsible for the card-like effect on project thumbnails and some other styling tweaks.
  * Version:           1.0.0
  * Author:            Jen Tak
  * Author URI:        buhvi.co
@@ -37,46 +37,4 @@ if ( ! defined( 'WPINC' ) ) {
  */
 define( 'OOR_TWEAKS_VERSION', '1.0.0' );
 
-/**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-oor_tweaks-activator.php
- */
-function activate_oor_tweaks() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-oor_tweaks-activator.php';
-	Oor_tweaks_Activator::activate();
-}
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-oor_tweaks-deactivator.php
- */
-function deactivate_oor_tweaks() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-oor_tweaks-deactivator.php';
-	Oor_tweaks_Deactivator::deactivate();
-}
-
-register_activation_hook( __FILE__, 'activate_oor_tweaks' );
-register_deactivation_hook( __FILE__, 'deactivate_oor_tweaks' );
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'includes/class-oor_tweaks.php';
-
-/**
- * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
- * @since    1.0.0
- */
-function run_oor_tweaks() {
-
-	$plugin = new Oor_tweaks();
-	$plugin->run();
-
-}
-run_oor_tweaks();
+wp_enqueue_style('oor_tweaks', plugin_dir_url( __FILE__ ) . 'css/oor_tweaks-public.css', array(), time(), 'all' );
