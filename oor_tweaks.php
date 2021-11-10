@@ -37,4 +37,8 @@ if ( ! defined( 'WPINC' ) ) {
  */
 define( 'OOR_TWEAKS_VERSION', '1.0.0' );
 
-wp_enqueue_style('oor_tweaks', plugin_dir_url( __FILE__ ) . 'css/oor_tweaks-public.css', array(), time(), 'all' );
+add_action('wp_enqueue_scripts', function () {
+	if (get_the_ID() == 969) {
+		wp_enqueue_style('oor_tweaks_asfarasicanremember', plugin_dir_url(__FILE__) . 'css/asfarasicanremember.css', array(), time(), 'all');
+	}
+});

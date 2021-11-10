@@ -1,10 +1,9 @@
 /*
- * Pin the text on the AS FAR AS I CAN REMEMBER PAGE
- * - only on that particular page (body.page-id-811)
+ * Pin the text
  * - only in desktop layout (#grid)
  * - use custom css class set in wp admin page editor (.oor_fixed)
 */
-body.page-id-811 #grid .oor_fixed {
+#grid .oor_fixed {
     position: fixed !important;
 }
 
