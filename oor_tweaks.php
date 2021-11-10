@@ -42,3 +42,23 @@ add_action('wp_enqueue_scripts', function () {
         wp_enqueue_style('oor_tweaks_asfarasicanremember', plugin_dir_url(__FILE__) . 'css/asfarasicanremember.css', array(), time(), 'all');
     }
 });
+
+// Randomize order of project thumbnails on the asfarasicanremember page.
+// Hack around absence of hooks in the lay theme by hooking into the get_term_metadata filter
+// which the theme uses to get the order of projects.
+add_filter('get_term_metadata', function($_, $object_id = null, $meta_key = null) {
+    // Try to minimize the scope of this filter to only the asfarasicanremember and only the thumbnail grid.
+    if (get_the_ID() != 969 || $meta_key != 'project_order') {
+        return null;
+    }
+    // Get the ids with the same query as the Lay theme does.
+    $query = new WP_Query([
+        'posts_per_page' => -1,
+        'post_type' => 'post',
+        'cat' => $object_id,
+        'fields' => 'ids'
+    ]);
+    $ids = $query->posts;
+    shuffle($ids);
+    return json_encode($ids);
+}, 10, 3);
