@@ -26,8 +26,8 @@
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (!defined('WPINC')) {
+    die;
 }
 
 /**
@@ -35,10 +35,10 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'OOR_TWEAKS_VERSION', '1.0.0' );
+define('OOR_TWEAKS_VERSION', '1.0.0');
 
 add_action('wp_enqueue_scripts', function () {
-	if (get_the_ID() == 969) {
-		wp_enqueue_style('oor_tweaks_asfarasicanremember', plugin_dir_url(__FILE__) . 'css/asfarasicanremember.css', array(), time(), 'all');
-	}
+    if (get_the_ID() == 969) {
+        wp_enqueue_style('oor_tweaks_asfarasicanremember', plugin_dir_url(__FILE__) . 'css/asfarasicanremember.css', array(), time(), 'all');
+    }
 });
